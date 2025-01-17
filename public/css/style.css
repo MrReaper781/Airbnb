@@ -1,0 +1,151 @@
+.body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
+
+/* Reset ul style */
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar styling */
+.navbar {
+    height: 5rem;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Styling for the Font Awesome compass icon */
+.fa-compass {
+    color: #fe424d;
+    font-size: 2rem;
+}
+
+/* Navbar links */
+.nav-link {
+    color: #222222 !important;
+}
+
+
+.card {
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top {
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.card-text p {
+    font-weight: 400 !important;
+}
+
+.card-text {
+    color: black;
+}
+
+.listing-link {
+    text-decoration: none;
+}
+
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.2;
+    background-color: white;
+}
+
+.add-btn {
+    background-color: #fe424d !important;
+    border: none !important;
+}
+
+footer {
+    margin-bottom: 0px;
+    background-color: #F2F3F5;
+    color: #333;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.f-info-socials {
+    margin: 15px 0;
+}
+
+.fa-square-facebook,
+.fa-square-instagram,
+.fa-linkedin {
+    font-size: 30px;
+}
+
+.f-info-socials i {
+    margin: 0 10px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.f-info-socials i {
+    width: 30px;
+    height: 30px;
+}
+
+.f-info-links {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+/* card */
+.lisiting-card {
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top {
+    border-radius: 2rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+}
+
+.card-body {
+    padding: 0 !important;
+}
+
+.card-text {
+    font-weight: 400;
+}
+
+.listing-link {
+    text-decoration: none;
+}
+
+/* card over lay */
+.card-img-overlay {
+    opacity: 0;
+}
+
+.card-img-overlay:hover {
+    opacity: 0.2;
+    background-color: white;
+}
