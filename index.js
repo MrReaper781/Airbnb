@@ -13,7 +13,6 @@ const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
 const User = require("./models/user.js");
-
 const app = express();
 
 // Setting up views directory and view engine
@@ -52,10 +51,18 @@ async function main() {
   await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
 }
 
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 app.use(flash());
 app.use((req, res, next) => {
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.currUser = req.user; // This is the logged-in user
   next();
 });
 
@@ -71,13 +78,6 @@ app.get("/demouser", async (req, res) => {
 app.use("/listings", listingsRoute);
 app.use("/listings/:id/reviews", reviewsRoute);
 app.use("/", userRoute);
-
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()));
-
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
 
 // Route to check if the server is working
 app.get("/", (req, res) => {

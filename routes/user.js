@@ -10,16 +10,21 @@ router.get("/signup", (req, res) => {
 
 router.post(
   "/signup",
-  wrapAsync(async (req, res) => {
+  wrapAsync(async (req, res, next) => {
     try {
-      let { emailid, username, password } = req.body;
+      const { emailid, username, password } = req.body;
       const newUser = new User({ emailid, username });
-      let registerUser = await User.register(newUser, password);
-      console.log(registerUser);
-      req.flash("success", "Welcome to Wanderlust");
-      res.redirect("/listings");
+      const registerUser = await User.register(newUser, password);
+
+      req.login(registerUser, (err) => {
+        if (err) {
+          return next(err);
+        }
+        req.flash("success", "Welcome to Wanderlust");
+        res.redirect("/listings");
+      });
     } catch (e) {
-      req.flash("error", "User Already Exist");
+      req.flash("error", e.message || "User Already Exists");
       res.redirect("/signup");
     }
   })
@@ -39,5 +44,15 @@ router.post(
     res.redirect("/listings");
   }
 );
+
+router.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    req.flash("success", "Logged Out Succesfully");
+    res.redirect("/listings");
+  });
+});
 
 module.exports = router;
