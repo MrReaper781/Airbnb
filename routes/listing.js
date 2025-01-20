@@ -34,7 +34,6 @@ router.get("/new", isLoggedIn, (req, res) => {
 // Route to display details of a specific id
 router.get(
   "/:id",
-  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let showListing = await Listing.findById(id).populate("reviews");
